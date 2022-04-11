@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+header {
+	background-color: #c5bacd;
+	height: 100px;
+}
+
+.logo {
+	height: 100px;
+}
+
+.logo_font {
+	margin-left: 10px;
+	font-size: 50px;
+}
+
+
+.footer {
+	font-weight: bold;
+	height: 100px;
+	background-color: #c5bacd;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 30px;
+}
