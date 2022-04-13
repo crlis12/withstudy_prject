@@ -5,13 +5,20 @@ header {
 	height: 100px;
 }
 
+
 .logo {
 	height: 100px;
 }
 
+
 .logo_font {
 	margin-left: 10px;
 	font-size: 50px;
+}
+
+.logo_font > a {
+	text-decoration: none;
+	color: black;
 }
 
 
@@ -23,4 +30,14 @@ header {
 	justify-content: center;
 	align-items: center;
 	margin-top: 30px;
+}
+
+
+.sign_up_font {
+	color: #a695b3;
+}
+
+#sign_up_form {
+	margin: auto;
+	width: 300px;	
 }
