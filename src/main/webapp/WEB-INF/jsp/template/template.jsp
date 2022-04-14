@@ -29,7 +29,7 @@
 
 </head>
 <body>
-	<div>	
+	<div class="wrap">	
 		<header>
 			<jsp:include page="../include/gnb.jsp"></jsp:include>
 		</header>

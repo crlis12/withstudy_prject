@@ -71,7 +71,9 @@
 		});
 		
 		//회원가입
-		$("#signUpBtn").on('click', function(){
+		$("#signUpBtn").on('click', function(e){
+			e.preventDefault();
+			
 			let loginId = $("#loginId").val().trim();
 			let name = $("#name").val().trim();
 			let password = $("#password").val().trim();
@@ -130,9 +132,9 @@
 			.done(function(data){
 				if(data.result == "success"){
 					alert("회원가입이 완료 되었습니다. 스터디 모임을 구해보세요!!");
-					location.href="/user/sign_in_view";
+					window.location.href="/user/sign_in_view";
 				} else {
-					alert("회원 가입에 실패 했습니다. 관리자에게 문의해주세요");
+					alert(data.errorMessage);
 				}
 			});
 		});

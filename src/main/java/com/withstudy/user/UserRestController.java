@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.withstudy.common.EncryptUtils;
 import com.withstudy.user.bo.UserBO;
 
 
@@ -49,8 +50,17 @@ public class UserRestController {
 			@RequestParam("location") String location) {
 		
 		Map<String, Object> result = new HashMap<>();
-		result.put("result", "success");
+		
+		String encryptUtilsPassword = EncryptUtils.md5(password);
 		//insert DB
+		int row = userBO.addUser(loginId, encryptUtilsPassword, name, email, location);
+		
+		if(row == 1) {
+			result.put("result", "success");
+		} else {
+			result.put("result", "error");
+			result.put("errorMessage", "회원가입에 실패하였습니다. 다시 입력해주세요");
+		}
 		
 		
 		return result;
