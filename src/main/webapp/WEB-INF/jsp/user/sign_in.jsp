@@ -43,7 +43,7 @@
 				<form id="signInForm" method="post" action="/user/sign_in">
 					<input type="text" id="loginId" name="loginId" placeholder="아이디를 입력하세요" class="form-control mb-3">
 					<input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" class="form-control mb-3">
-					<button type="button" class="btn btn-block btn-primary">로그인</button>
+					<button type="button" class="btn btn-block btn-primary" id="signInBtn">로그인</button>
 					<div class="d-flex justify-content-between align-items-center mt-3">
 						<span class="font-weight-bold">회원 가입 후 원하는 스터디 모임을 구해보세요</span>
 						<a class="btn btn-secondary col-3" href="/user/sign_up_view">회원가입</a>
@@ -58,4 +58,38 @@
 		</footer>
 	</div>
 </body>
+<script>
+	$(document).ready(function(){
+		$("#signInBtn").on('click', function(e){
+			e.preventDefault();
+			
+			let loginId = $("#loginId").val().trim();
+			let password = $("#password").val().trim();
+			
+			if(loginId == ""){
+				alert("아이디를 입력해주세요");
+				return;
+			}
+			
+			if(password == ""){
+				alert("비밀번호를 입력해주세요");
+				return;
+			}
+		
+			let url = $("#signInForm").attr("action");
+			let params = $("#signInForm").serialize();
+		
+			$.post(url, params)
+			.done(function(data){
+				if(data.result == "success"){
+					window.location.href = "/study/study_view";
+				}
+				if(data.result == "error") {
+					alert(data.errorMessage);
+					window.location.reload();
+				}
+			});	
+		});
+	});
+</script>
 </html>
