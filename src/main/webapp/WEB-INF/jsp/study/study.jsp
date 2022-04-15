@@ -6,11 +6,15 @@
 	<div class="d-flex justify-content-center mt-3">
 		<div id="map" style="width:50%;height:350px;"></div>
 	</div>
+	<div class="d-flex justify-content-end">
+		<button type="button" class="btn btn-lg btn-primary" id="getMyPositionBtn" >나의 현재 위치</button>
+	</div>
 	<hr>
 	<!-- 글쓰기  -->
 	<div class="d-flex justify-content-between mb-3">
 		<div>
 			<button type="button" class="btn btn-info">글쓰기</button>
+			
 		</div>
 		<!-- 검색 -->
 		<div class="d-flex">
@@ -54,13 +58,44 @@ $(document).ready(function(){
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
+        level: 3, // 지도의 확대 레벨
+        mapTypeId : kakao.maps.MapTypeId.ROADMAP
     };
 
 	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 	var map = new kakao.maps.Map(mapContainer, mapOption);
 	
-	
+	function locationLoadSuccess(pos){
+	    // 현재 위치 받아오기
+	    var currentPos = new kakao.maps.LatLng(pos.coords.latitude,pos.coords.longitude);
+		console.log(currentPos)
+	    // 지도 이동(기존 위치와 가깝다면 부드럽게 이동)
+	    map.panTo(currentPos);
+
+	    // 마커 생성
+	    var marker = new kakao.maps.Marker({
+	        position: currentPos
+	    });
+	    
+	    var infowindow = new kakao.maps.InfoWindow({
+		    content : '<div style="padding:4px" class="text-center">나의 현재 위치</div>'
+
+		// 인포윈도우를 지도에 표시한다
+		infowindow.open(map, marker);
+
+	    // 기존에 마커가 있다면 제거
+	    marker.setMap(null);
+	    marker.setMap(map);
+	};
+
+	function locationLoadError(pos){
+	    alert('위치 정보를 가져오는데 실패했습니다.');
+	};
+
+	// 위치 가져오기 버튼 클릭시
+	$("#getMyPositionBtn").on('click', function(){
+		navigator.geolocation.getCurrentPosition(locationLoadSuccess,locationLoadError);
+	});
 });
  
 </script>
