@@ -78,7 +78,8 @@ $(document).ready(function(){
 	    });
 	    
 	    var infowindow = new kakao.maps.InfoWindow({
-		    content : '<div style="padding:4px" class="text-center">나의 현재 위치</div>'
+		    content : '<div style="padding:4px" class="text-center">나의 현재 위치</div>' // 인포윈도우에 표시할 내용
+		});
 
 		// 인포윈도우를 지도에 표시한다
 		infowindow.open(map, marker);
