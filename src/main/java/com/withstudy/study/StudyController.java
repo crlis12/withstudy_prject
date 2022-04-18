@@ -15,4 +15,10 @@ public class StudyController {
 		
 		return "template/template";
 	}
+	
+	@RequestMapping("study_create_view")
+	public String addStudy(Model model) {
+		model.addAttribute("viewName", "study/study_create");
+		return "template/template";
+	}
 }

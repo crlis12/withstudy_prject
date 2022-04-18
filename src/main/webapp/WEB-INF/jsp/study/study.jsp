@@ -14,7 +14,7 @@
 	<!-- 글쓰기  -->
 	<div class="d-flex justify-content-between mb-3">
 		<div>
-			<button type="button" class="btn btn-info">글쓰기</button>
+			<button type="button" class="btn btn-info"><a href="/study/study_create_view" class="text-white">글쓰기</a></button>
 			
 		</div>
 		<!-- 검색 -->
@@ -65,7 +65,9 @@ $(document).ready(function(){
 	    }; 
 
 	// 지도를 생성합니다    
-	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	var map = new kakao.maps.Map(mapContainer, mapOption);
+	
+	// 주변 카페 나타내기
 	$("#cafe").on('click',function(){
 		// 장소 검색 객체를 생성합니다
 		var ps = new kakao.maps.services.Places(map); 
@@ -87,8 +89,10 @@ $(document).ready(function(){
 		    // 마커를 생성하고 지도에 표시합니다
 		    var marker = new kakao.maps.Marker({
 		        map: map,
-		        position: new kakao.maps.LatLng(place.y, place.x) 
+		        position: new kakao.maps.LatLng(place.y, place.x)
 		    });
+		    marker.setMap(null);
+	    	marker.setMap(map);
 
 		    // 마커에 클릭이벤트를 등록합니다
 		    kakao.maps.event.addListener(marker, 'click', function() {
@@ -128,8 +132,6 @@ $(document).ready(function(){
 		    marker.setMap(null);
 		    marker.setMap(map);
 		};
-		
-		
 		
 		function locationLoadError(pos){
 		    alert('위치 정보를 가져오는데 실패했습니다.');
