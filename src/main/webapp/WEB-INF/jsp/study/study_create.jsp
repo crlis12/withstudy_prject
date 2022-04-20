@@ -20,7 +20,7 @@
    				<label for="location">스터디 위치</label>
    				<input type="text" id="location" name="location" class="form-control" placeholder="위치">
    				<!-- Button trigger modal -->
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myFullsizeModal">
   					모임 할 위치 정하기
 				</button>
     		</div>
@@ -33,45 +33,22 @@
     		</div>
     	</form>
     </div>
-    <!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-	        
-	      </div>
-	      <div class="modal-body">
-	      	<div class="map_wrap">
+    <!-- Fullsize Modal -->
+    	<div class="modal fade" id="myFullsizeModal" tabindex="-1" role="dialog" aria-labelledby="myFullsizeModalLabel">
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content modal-lg">
+		      <div class="modal-header">
+			    <h4 class="modal-title" id="myModalLabel">스터디할 위치 정하기</h4>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		      </div>
+		      <div class="modal-body modal-lg">
+		        <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
     <ul id="category">
-        <li id="BK9" data-order="0"> 
-            <span class="category_bg bank"></span>
-            은행
-        </li>       
-        <li id="MT1" data-order="1"> 
-            <span class="category_bg mart"></span>
-            마트
-        </li>  
-        <li id="PM9" data-order="2"> 
-            <span class="category_bg pharmacy"></span>
-            약국
-        </li>  
-        <li id="OL7" data-order="3"> 
-            <span class="category_bg oil"></span>
-            주유소
-        </li>  
         <li id="CE7" data-order="4"> 
             <span class="category_bg cafe"></span>
             카페
         </li>  
-        <li id="CS2" data-order="5"> 
-            <span class="category_bg store"></span>
-            편의점
-        </li>      
     </ul>
 </div>
 
@@ -86,7 +63,7 @@ var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}),
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
+        level: 3 // 지도의 확대 레벨
     };  
 
 // 지도를 생성합니다    
@@ -111,6 +88,10 @@ placeOverlay.setContent(contentNode);
 
 // 각 카테고리에 클릭 이벤트를 등록합니다
 addCategoryClickEvent();
+
+//카페 이름과 주소입니다
+let cafeName = null;
+let cafeaddress= null;
 
 // 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다
 function addEventHandle(target, type, callback) {
@@ -206,6 +187,7 @@ function removeMarker() {
 
 // 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
 function displayPlaceInfo (place) {
+	
     var content = '<div class="placeinfo">' +
                     '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
 
@@ -214,15 +196,24 @@ function displayPlaceInfo (place) {
                     '  <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
     }  else {
         content += '    <span title="' + place.address_name + '">' + place.address_name + '</span>';
+        let cafeaddress = content;
     }                
    
-    content += '    <span class="tel">' + place.phone + '</span>' + 
+    content += '    <span class="tel">' + place.phone  +'</span>' +
+    			'<button type="button" id="studyloction" class="btn btn-success">여기로 스터디 모임위치 정하기  </button>' +
                 '</div>' + 
                 '<div class="after"></div>';
 
     contentNode.innerHTML = content;
     placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
-    placeOverlay.setMap(map);  
+    placeOverlay.setMap(map);
+    
+    // 카페이름, 카페 주소
+    console.log(place.place_name,place.road_address_name);
+    cafeName = place.place_name;
+    cafeaddress = place.road_address_name;
+    console.log(cafeName);
+    console.log(cafeaddress);
 }
 
 
@@ -269,14 +260,15 @@ function changeCategoryClass(el) {
     } 
 } 
 </script>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+		</div>
+		      <div class="modal-footer d-flex justify-content-between">
+		      	<button type="button" id="mylocation" class="btn btn-info">내 현재 위치</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+		      </div>
+		    </div>
+		  </div>
+		  
+		</div>
 <script>
 	$(document).ready(function(){
 		$("#deadline").datepicker({
@@ -307,5 +299,46 @@ function changeCategoryClass(el) {
 				return;
 			}
 		});
+		$("#mylocation").on("click", function(){
+			//나의 현재 위치
+			function locationLoadSuccess(pos){
+			    // 현재 위치 받아오기
+				var currentPos = new kakao.maps.LatLng(pos.coords.latitude,pos.coords.longitude);
+			    
+				console.log(currentPos)
+			    // 지도 이동(기존 위치와 가깝다면 부드럽게 이동)
+			    map.panTo(currentPos);
+
+			    // 마커 생성
+			    var marker = new kakao.maps.Marker({
+			        position: currentPos
+			    });
+			    
+			    var infowindow = new kakao.maps.InfoWindow({
+				    content : '<div style="padding:4px" class="text-center">나의 현재 위치</div>' // 인포윈도우에 표시할 내용
+				});
+
+				// 인포윈도우를 지도에 표시한다
+				infowindow.open(map, marker);
+
+			    // 기존에 마커가 있다면 제거
+			    marker.setMap(null);
+			    marker.setMap(map);
+			};
+			
+			function locationLoadError(pos){
+			    alert('위치 정보를 가져오는데 실패했습니다.');
+			};
+			navigator.geolocation.getCurrentPosition(locationLoadSuccess,locationLoadError);	
+		});
+		
+		$("#studyloction").on('click', function(){
+			alert("g확인");
+			//console.log(cafeName);
+			//console.log(cageaddress);
+		});
 	});
+	
+	
+	
 </script>
