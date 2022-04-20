@@ -1,13 +1,17 @@
 package com.withstudy.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.withstudy.user.model.User;
 
 @RequestMapping("/user")
 @Controller
 public class UserController {
+	
+	
 	
 	// 회원가입 화면
 	@RequestMapping("/sign_up_view")

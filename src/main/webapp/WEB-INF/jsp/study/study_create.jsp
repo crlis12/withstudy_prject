@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <div id="study_create_form">
-    	<form>
+    	<form id="studyCreateForm" method="post" action="/study/study_create">
 	    	<div class="mt-3">
-    			<label for="subject">제목</label>
-    			<input type="text" id="subject" name="subject" class="form-control" placeholder="제목을 입력하세요">
+    			<label for="title">제목</label>
+    			<input type="text" id="title" name="title" class="form-control" placeholder="제목을 입력하세요">
     		</div>
     		<div class="d-flex justify-content-between mt-3">
 	    		<div>
@@ -282,13 +282,13 @@ function changeCategoryClass(el) {
 			, minDate: 0
 		});
 		$("#studyCreateBtn").on('click', function(){
-			let subject = $("#subject").val().trim();
+			let title = $("#title").val().trim();
 			let personnel = $("#personnel").val().trim();
 			let location = $("#location").val().trim();
 			let deadline = $("#deadline").val().trim();
 			let content = $("#content").val().trim();
 			
-			if(subject == "") {
+			if(title == "") {
 				alert("제목을 입력하세요");
 				return;
 			}
@@ -301,9 +301,25 @@ function changeCategoryClass(el) {
 				return;
 			}
 			if(location == "") {
-				alert("위치을 입력하세요");
+				alert("스터디 모임을 할 위치을 입력하세요");
 				return;
 			}
+			
+			let url = $("#studyCreateForm").attr("action");
+			let params = $("#studyCreateForm").serialize();
+			
+			console.log(url);
+			console.log(params);
+			
+			$.post(url, params)
+			.done(function(data){
+				if(data.result == "success"){
+					alert("스터디 모임이 만들어졌습니다.");
+					window.location.href="/study/study_view";
+				} else {
+					alert(data.errorMessage);
+				}
+			});
 		});
 		
 		$("#mylocation").on("click", function(){
