@@ -200,7 +200,7 @@ function displayPlaceInfo (place) {
     }                
    
     content += '    <span class="tel">' + place.phone  +'</span>' +
-    			'<button type="button" id="studyloction" class="btn btn-success">여기로 스터디 모임위치 정하기  </button>' +
+    			'<button type="button" id="studylocation" class="btn btn-success" data-dismiss="modal">여기로 스터디 모임위치 정하기  </button>' +
                 '</div>' + 
                 '<div class="after"></div>';
 
@@ -210,10 +210,16 @@ function displayPlaceInfo (place) {
     
     // 카페이름, 카페 주소
     console.log(place.place_name,place.road_address_name);
-    cafeName = place.place_name;
-    cafeaddress = place.road_address_name;
-    console.log(cafeName);
-    console.log(cafeaddress);
+    
+    
+    // 지도에서 카페 위치 선택했을 때
+    $("#studylocation").on("click", function(){
+    	cafeName = place.place_name;
+        cafeaddress = place.road_address_name;
+        console.log(cafeName);
+        console.log(cafeaddress);
+        $("#location").val(cafeName + "(" + cafeaddress + ")");
+	});
 }
 
 
@@ -278,8 +284,8 @@ function changeCategoryClass(el) {
 		$("#studyCreateBtn").on('click', function(){
 			let subject = $("#subject").val().trim();
 			let personnel = $("#personnel").val().trim();
-			let location = $("#deadline").val().trim();
-			let deadline = $("#location").val().trim();
+			let location = $("#location").val().trim();
+			let deadline = $("#deadline").val().trim();
 			let content = $("#content").val().trim();
 			
 			if(subject == "") {
@@ -299,6 +305,7 @@ function changeCategoryClass(el) {
 				return;
 			}
 		});
+		
 		$("#mylocation").on("click", function(){
 			//나의 현재 위치
 			function locationLoadSuccess(pos){
@@ -332,11 +339,6 @@ function changeCategoryClass(el) {
 			navigator.geolocation.getCurrentPosition(locationLoadSuccess,locationLoadError);	
 		});
 		
-		$("#studyloction").on('click', function(){
-			alert("g확인");
-			//console.log(cafeName);
-			//console.log(cageaddress);
-		});
 	});
 	
 	
