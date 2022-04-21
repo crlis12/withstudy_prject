@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="container">
 	<!-- 지도를 표시할 div 입니다 -->
@@ -41,10 +43,19 @@
 		</thead>
 		<!-- 모임 데이터 반복 상자 -->
 		<tbody>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+		<c:forEach items="${studyList }" var="study">
+		<!-- 2022-04-22 00:00:00  -->
+			
+			<tr>
+				<td>${study.title}</td>
+				<td>${study.personnel}</td>
+				<td>${study.location}</td>
+				<td>
+					<fmt:parseDate value="${study.deadline }" var="parseDateValue" pattern="yyyy-MM-dd HH:mm:ss" />
+					<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd" />
+				</td>
+			</tr>
+		</c:forEach>
 		</tbody>
 	</table>
 </div>

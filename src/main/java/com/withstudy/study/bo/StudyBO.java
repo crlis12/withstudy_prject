@@ -1,9 +1,12 @@
 package com.withstudy.study.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.withstudy.study.dao.StudyDAO;
+import com.withstudy.study.model.Study;
 
 @Service
 public class StudyBO {
@@ -16,5 +19,10 @@ public class StudyBO {
 			String deadline, String location, String content) {
 		
 		return studyDAO.insertStudy(userId, hostUserId, title, personnel, deadline, location, content); 
+	}
+	
+	public List<Study> getStudyList()	{
+		
+		return studyDAO.selectStudyList();
 	}
 }
