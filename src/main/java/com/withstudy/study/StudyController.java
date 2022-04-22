@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.withstudy.study.bo.StudyBO;
 import com.withstudy.study.model.Study;
@@ -34,9 +35,16 @@ public class StudyController {
 	}
 	
 	@RequestMapping("study_detail_view")
-	public String detailStudy(Model model)	{
-		model.addAttribute("viewName", "study/study_detail");
+	public String detailStudy(Model model,
+			@RequestParam("studyId") int studyId)	{
 		
+		// 로그인 되었을때만 글 확인
+		
+		// select DB(해당 글 확인)
+		Study study = studyBO.getStudyById(studyId);
+		
+		model.addAttribute("viewName", "study/study_detail");
+		model.addAttribute("study", study);
 		return "template/template";
 	}
 }

@@ -19,6 +19,24 @@
  			`study`
  		ORDER BY `id` DESC
  	</select>
+ 	
+ 	<select id="selectStudyById" parameterType="int" resultType="com.withstudy.study.model.Study">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `hostUserId`
+			, `title`
+			, `personnel`
+			, `deadline`
+			, `location`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`study`
+ 		WHERE
+ 			`id` = #{studyId} 
+ 	</select>
  	<insert id="insertStudy" parameterType="map">
  		INSERT INTO `study`
  		(

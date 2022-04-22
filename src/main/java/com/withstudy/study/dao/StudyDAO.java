@@ -14,6 +14,7 @@ public interface StudyDAO {
 	// 스터디 데이터 가져오기
 	public List<Study> selectStudyList();
 	
+	public Study selectStudyById(int studyId);
 	
 	//insert
 	// 스터디 모임 만들기

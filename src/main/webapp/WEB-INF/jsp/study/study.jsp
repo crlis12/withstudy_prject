@@ -55,7 +55,8 @@
 					<fmt:parseDate value="${study.deadline }" var="parseDateValue" pattern="yyyy-MM-dd HH:mm:ss" />
 					<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd" />
 				</td>
-				<td><a href="/study/study_detail_view" class="btn btn-success">자세히 보기</a></td>
+				<!-- 자세히 보기 클릭시 해당 스터디 글 번호를 가져온다 -->
+				<td><a href="/study/study_detail_view?studyId=${study.id}" class="btn btn-success">자세히 보기</a></td>
 			</tr> 
 		</c:forEach>
 		</tbody>
