@@ -39,6 +39,7 @@
 				<th>인원</th>
 				<th>위치</th>
 				<th>모집기간</th>
+				<th>신청하기</th>
 			</tr>
 		</thead>
 		<!-- 모임 데이터 반복 상자 -->
@@ -47,14 +48,15 @@
 		<!-- 2022-04-22 00:00:00  -->
 			
 			<tr>
-				<td>${study.title}</td>
+				<td class="d-flex justify-content-center align-items-center">${study.title}</td>
 				<td>${study.personnel}</td>
 				<td>${study.location}</td>
 				<td>
 					<fmt:parseDate value="${study.deadline }" var="parseDateValue" pattern="yyyy-MM-dd HH:mm:ss" />
 					<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd" />
 				</td>
-			</tr>
+				<td><a href="/study/study_detail_view" class="btn btn-success">자세히 보기</a></td>
+			</tr> 
 		</c:forEach>
 		</tbody>
 	</table>

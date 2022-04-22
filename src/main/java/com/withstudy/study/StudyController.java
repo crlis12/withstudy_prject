@@ -32,4 +32,11 @@ public class StudyController {
 		model.addAttribute("viewName", "study/study_create");
 		return "template/template";
 	}
+	
+	@RequestMapping("study_detail_view")
+	public String detailStudy(Model model)	{
+		model.addAttribute("viewName", "study/study_detail");
+		
+		return "template/template";
+	}
 }
