@@ -11,6 +11,9 @@ public interface UserDAO {
 	// 유저 아이디 중복 확인
 	public int selectcheckloginId(String loginId);
 	
+	//유저 고유번호
+	public User selectUserByuserId(int userId);
+	
 	// 로그인
 	public User selectUserSignIn(
 			@Param("loginId") String loginId,

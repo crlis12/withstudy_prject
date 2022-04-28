@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.withstudy.comment.bo.CommentBO;
 import com.withstudy.comment.model.Comment;
+import com.withstudy.comment.model.CommentView;
 import com.withstudy.study.bo.StudyBO;
 import com.withstudy.study.model.Study;
 
@@ -50,10 +51,11 @@ public class StudyController {
 		
 		// 댓글 내용 가지고 오기
 		List<Comment> comment = commentBO.getcommentListByStudyId(studyId);
-		
+		List<CommentView> commentViewList = commentBO.getCommentViewList(studyId);
 		
 		model.addAttribute("viewName", "study/study_detail");
 		model.addAttribute("study", study);
+		model.addAttribute("commentViewList", commentViewList);
 		model.addAttribute("commentList", comment);
 		return "template/template";
 	}

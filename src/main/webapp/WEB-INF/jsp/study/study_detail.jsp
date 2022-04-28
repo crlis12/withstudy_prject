@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <div class="study_detail_box">
     	<div class="d-flex justify-content-between mt-3">
-    		<h1 class="font-weight-bold">${study.title }</h1>
+    		<h1 class="font-weight-bold">${study.title}</h1>
     		<!-- 스크랩 박스 -->
     		<div class="d-flex align-items-center">
 	    		<span class="mr-2">스크랩</span>
@@ -61,21 +61,27 @@
     	</div>
     	<hr>
     	
-		<c:forEach items="${commentList}" var="comment">
-    	<div class="commentBox form-control">
-    		댓글창
-    		${comment.content}
-    	</div>
-    	</c:forEach>
     	<!-- 댓글 공간 -->
     	<!-- 로그인 가능 상태만 쓰기 -->
     	<c:if test="${not empty userloginId }">
-    		<div class="d-flex mt-5">
+    		<div class="d-flex mt-2">
     			<input type="text" id="userComment${study.id}" class="form-control" placeholder="댓글 쓰기">
     			<!-- 스터디 글 번호 정보를 넘겨준다 스터디마다 id값이 다르므로 class로 이름을 지어준다 -->
     			<button type="button" class="userCommentBtn  btn btn-info ml-3" data-study-id="${study.id}">댓글 달기</button>
     		</div>
     	</c:if>
+    	
+		<c:forEach items="${commentViewList}" var="commentView">
+    	<div class="commentBox form-control mt-2">
+    		<div class="d-flex justify-content-between">
+    			<span class="font-weight-bold">${commentView.user.loginId}</span>
+    			<span><fmt:formatDate value="${commentView.comment.createdAt}" pattern="yyyy/MM/dd HH:mm" /></span>
+    		</div>
+    		<br>
+    		${commentView.comment.content}
+    	</div>
+    	</c:forEach>
+    	
     </div>
  <script>
  	$(document).ready(function(){
@@ -98,7 +104,7 @@
  				, data:{"studyId":studyId,"content":commentContent}
  				, success: function(data) {
  					if(data.result == "success"){
- 						windows.location.reload();
+ 						location.reload();
  					} else {
  						alert(data.errorMessage);
  					}

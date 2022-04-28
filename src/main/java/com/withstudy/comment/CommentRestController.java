@@ -9,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.withstudy.comment.bo.CommentBO;
 
 @RequestMapping("/comment")
-@Controller
+@RestController
 public class CommentRestController {
 	
 	@Autowired
@@ -26,7 +27,6 @@ public class CommentRestController {
 			HttpSession session) {
 		
 		Map<String, Object> result = new HashMap<>();
-		
 		Integer userId = (Integer)session.getAttribute("userId");
 		
 		// 로그인이 안되어 있을 시
@@ -35,6 +35,7 @@ public class CommentRestController {
 			result.put("errorMessage", "로그인을 해주세요.");
 			return result;
 		}
+		
 		//insert DB (로그인 된 아이디,글번호,글 내용)
 		int row = commentBO.addComment(userId, studyId, content);
 		

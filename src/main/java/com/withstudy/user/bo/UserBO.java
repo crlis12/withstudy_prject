@@ -13,6 +13,10 @@ public class UserBO {
 	private UserDAO userDAO;
 	
 	//select 
+	public User getUserByuserId(int userId) {
+		
+		return userDAO.selectUserByuserId(userId);
+	}
 	
 	// 유저 아이디 중복 확인
 	public int getcheckloginId(String loginId) {
