@@ -97,17 +97,16 @@
  				, url:"/comment/create"
  				, data:{"studyId":studyId,"content":commentContent}
  				, success: function(data) {
-					if(data.result == "success") {
-						location.reload();
-					} else {
-						alert(data.errorMessage);
-					}
-				}
-				, error: function(jqXHR, textStatus, errorThrown) { // 에러를 세부적으로 찍어준다
-					let errorMsg = jqXHR.responseJSON.status;
-					alert(errorMsg + ":" + textStatus);
-				}
- 				
+ 					if(data.result == "success"){
+ 						windows.location.reload();
+ 					} else {
+ 						alert(data.errorMessage);
+ 					}
+ 				}
+ 				, error: function(jqXHR, textStatus, errorThrown) {
+ 					let errorMsg = jqXHR.responseJSON.status;
+ 					alert(errorMsg + ":" + textStatus);
+ 				}
  			});
  		});
  	});

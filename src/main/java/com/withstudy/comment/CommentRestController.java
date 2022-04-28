@@ -24,22 +24,26 @@ public class CommentRestController {
 			@RequestParam("studyId") int studyId,
 			@RequestParam("content") String content,
 			HttpSession session) {
+		
 		Map<String, Object> result = new HashMap<>();
-		result.put("result", "success");
+		
 		Integer userId = (Integer)session.getAttribute("userId");
 		
 		// 로그인이 안되어 있을 시
 		if (userId == null) {
 			result.put("result", "error");
-			result.put("error_message", "로그인을 해주세요.");
+			result.put("errorMessage", "로그인을 해주세요.");
 			return result;
 		}
 		//insert DB (로그인 된 아이디,글번호,글 내용)
-		int comment = commentBO.addComment(userId, studyId, content);
+		int row = commentBO.addComment(userId, studyId, content);
 		
-		if(comment  > 0 ) {
+		if(row > 0) {
 			result.put("result", "success");
+		} else {
+			result.put("errorMessage", "댓글을 다시 작성해 주세요.");
 		}
+		
 		return result;
 	}
 }
