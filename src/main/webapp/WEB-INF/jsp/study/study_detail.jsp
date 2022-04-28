@@ -45,7 +45,8 @@
 					</c:when>
 					<c:when test="${today- endDate < 0 }">
 						<span class="text-danger font-weight-bold">
-							D${today - endDate}
+							D
+							${today - endDate}
 						</span>
 					</c:when>
 				</c:choose>
@@ -60,8 +61,54 @@
     	</div>
     	<hr>
     	
-    	<!-- 댓글 공간 -->
-    	<div>
-    		댓글 창
+		<c:forEach items="${commentList}" var="comment">
+    	<div class="commentBox form-control">
+    		댓글창
+    		${comment.content}
     	</div>
+    	</c:forEach>
+    	<!-- 댓글 공간 -->
+    	<!-- 로그인 가능 상태만 쓰기 -->
+    	<c:if test="${not empty userloginId }">
+    		<div class="d-flex mt-5">
+    			<input type="text" id="userComment${study.id}" class="form-control" placeholder="댓글 쓰기">
+    			<!-- 스터디 글 번호 정보를 넘겨준다 스터디마다 id값이 다르므로 class로 이름을 지어준다 -->
+    			<button type="button" class="userCommentBtn  btn btn-info ml-3" data-study-id="${study.id}">댓글 달기</button>
+    		</div>
+    	</c:if>
     </div>
+ <script>
+ 	$(document).ready(function(){
+ 		
+ 		// 댓글 게시 버튼 클릭시
+ 		$(".userCommentBtn").on("click",function(){
+ 			let studyId = $(this).data("study-id"); // 스터디 id값 확인
+ 			
+ 			let commentContent = $(this).siblings('input').val().trim(); //div안에있는 태그들
+ 			console.log(commentContent);
+ 			
+ 			if(commentContent == ""){
+ 				alert("댓글을 입력해주세요");
+ 				return;
+ 			}
+ 			
+ 			$.ajax({
+ 				type:"POST"
+ 				, url:"/comment/create"
+ 				, data:{"studyId":studyId,"content":commentContent}
+ 				, success: function(data) {
+					if(data.result == "success") {
+						location.reload();
+					} else {
+						alert(data.errorMessage);
+					}
+				}
+				, error: function(jqXHR, textStatus, errorThrown) { // 에러를 세부적으로 찍어준다
+					let errorMsg = jqXHR.responseJSON.status;
+					alert(errorMsg + ":" + textStatus);
+				}
+ 				
+ 			});
+ 		});
+ 	});
+ </script>
