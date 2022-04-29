@@ -6,12 +6,15 @@
     	<div class="d-flex justify-content-between mt-3">
     		<h1 class="font-weight-bold">${study.title}</h1>
     		<!-- 스크랩 박스 -->
+    		
     		<div class="d-flex align-items-center">
 	    		<span class="mr-2">스크랩</span>
+	    		<a href="#" class="scrap-btn" data-study-id="${study.id}">
 	    		<!-- 스크랩 버튼 비활성화 -->
 	    		<img alt="scrap1" src="/static/images/not_scrap.png" width="30px" height="30px">
 	    		<!-- 스크랩 버튼 활성화 -->
 	    		<img alt="scrap2" src="/static/images/scrap.jpg" width="25px" height="25px">
+	    		</a>
 	    	</div>
     	</div>
     	<div class="d-flex justify-content-between">
@@ -112,6 +115,24 @@
  				, error: function(jqXHR, textStatus, errorThrown) {
  					let errorMsg = jqXHR.responseJSON.status;
  					alert(errorMsg + ":" + textStatus);
+ 				}
+ 			});
+ 		});
+ 		
+ 		$(".scrap-btn").on("click", function(){
+ 			let studyId = $(this).data("study-id");
+ 			
+ 			$.ajax({
+ 				url: "/scrap/" + studyId
+ 				,success: function(data) {
+ 					if (data.result == "success") {
+ 						location.reload();
+ 					} else {
+ 						alert(data.errorMessage);
+ 					}
+ 				}
+ 				,error: function(e) {
+ 					alert("스크랩에 실패하였습니다. 관리자에게 문의해주세요");
  				}
  			});
  		});

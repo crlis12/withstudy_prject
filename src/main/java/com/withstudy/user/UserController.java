@@ -41,4 +41,12 @@ public class UserController {
 		return "redirect:/user/sign_in_view";
 	}
 	
+	@RequestMapping("/mypage_view")
+	public String mypageView(Model model) {
+		model.addAttribute("viewName", "user/mypage");
+		
+		return "template/template";
+		
+	}
+	
 }

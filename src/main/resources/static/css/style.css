@@ -112,10 +112,19 @@ header {
 .study_detail_box {
 	width: 500px;
 	margin: auto;
-	 
 }
 
 .commentBox{
+	background-color: #c3c3c3;
+}
+
+.mypage_box{
+	width: 500px;
+	margin: auto;
+}
+
+.mypage_form{
+	width: 500px;
 	background-color: #c3c3c3;
 }
 

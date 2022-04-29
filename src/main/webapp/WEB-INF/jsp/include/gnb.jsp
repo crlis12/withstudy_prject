@@ -11,9 +11,11 @@
 		<span class="mr-3">${userName}</span>
 		<c:choose>
 			<c:when test="${not empty userName}">
+				<a href="/user/mypage_view" class="text-white mr-3">마이페이지</a>
 				<a href="/user/sign_out" class="mr-5 text-white">로그아웃</a>
 			</c:when>
 			<c:when test="${empty userName}">
+				
 				<a href="/user/sign_in_view" class="mr-5 text-white">로그인</a>
 			</c:when>
 		</c:choose>
