@@ -16,6 +16,8 @@ public interface StudyDAO {
 	
 	public Study selectStudyById(int studyId);
 	
+	public List<Study> selectStudyByuserId(Integer userId);
+	
 	//insert
 	// 스터디 모임 만들기
 	public int insertStudy(

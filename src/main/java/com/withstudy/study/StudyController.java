@@ -58,7 +58,6 @@ public class StudyController {
 		Study study = studyBO.getStudyById(studyId);
 		
 		// 댓글 내용 가지고 오기
-		List<Comment> comment = commentBO.getcommentListByStudyId(studyId);
 		List<CommentView> commentViewList = commentBO.getCommentViewList(studyId);
 		
 		boolean scrapCheck = scrapBO.existScrap(studyId, userId);
@@ -67,7 +66,6 @@ public class StudyController {
 		model.addAttribute("viewName", "study/study_detail");
 		model.addAttribute("study", study);
 		model.addAttribute("commentViewList", commentViewList);
-		model.addAttribute("commentList", comment);
 		model.addAttribute("scrapCheck", scrapCheck);
 		return "template/template";
 	}

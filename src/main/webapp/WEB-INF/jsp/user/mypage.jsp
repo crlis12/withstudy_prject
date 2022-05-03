@@ -17,7 +17,7 @@
 			내 정보
 	</a>
 	
-	<a href="#" class="btn mypage_form mt-3 form-control">
+	<a href="/user/mypage/mystudy_view" class="btn mypage_form mt-3 form-control">
 			내가 쓴 글	
 	</a>
 	

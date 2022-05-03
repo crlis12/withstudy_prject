@@ -16,7 +16,7 @@ import com.withstudy.scrap.bo.ScrapBO;
 
 @RequestMapping("/scrap")
 @RestController
-public class scrapRestController {
+public class ScrapRestController {
 	
 	@Autowired
 	private ScrapBO scrapBO;

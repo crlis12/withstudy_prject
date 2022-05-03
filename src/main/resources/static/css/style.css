@@ -13,10 +13,22 @@ header {
 	height: 100px;
 }
 
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration:none; 
+	color:#000;
+}
+
+
 
 .logo {
 	height: 100px;
 }
+
+
 
 
 .logo_font {
@@ -126,6 +138,18 @@ header {
 .mypage_form{
 	width: 500px;
 	background-color: #c3c3c3;
+}
+
+
+
+.mystudy_Box {
+	margin-top: 10px;
+	height: 150px;
+	background-color: #e4e4e4;
+}
+
+.mystudy_Box:hover {
+	background-color: white;
 }
 
 
