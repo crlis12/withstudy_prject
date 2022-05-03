@@ -13,20 +13,19 @@
 			</div>
 		</div>
 	</div>
+	<a href="/user/mypage/myinfo_view" class="btn mypage_form mt-3 form-control">
+			내 정보
+	</a>
 	
-	<div class="mypage_form mt-3 text-center form-control">
-		내정보
-	</div>
+	<a href="#" class="btn mypage_form mt-3 form-control">
+			내가 쓴 글	
+	</a>
 	
-	<div class="mypage_form mt-3 text-center form-control">
-		내가 쓴글
-	</div>
-	
-	<div class="mypage_form mt-3 text-center form-control">
-		댓글 단글
-	</div>
-	
-	<div class="mypage_form mt-3 text-center form-control">
-		스크랩
-	</div>
+	<a href="#" class="btn mypage_form mt-3 form-control">
+			댓글 단글		
+	</a>
+		
+	<a href="#" class="btn mypage_form mt-3 form-control">
+			스크랩		
+	</a>
 </div>

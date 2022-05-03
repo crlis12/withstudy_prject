@@ -27,4 +27,8 @@ public interface UserDAO {
 			@Param("email") String email,
 			@Param("location") String location);
 	
+	//비밀번호 변경
+	public int upadateUser(
+			@Param("loginId") String loginId,
+			@Param("password") String password);
 }

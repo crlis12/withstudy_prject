@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.withstudy.scrap.dao.ScrapDAO">
+ 	<select id="selectScrapByStudyIdOrUserId" resultType="int" parameterType="map">
+ 		SELECT COUNT(*)
+ 		FROM
+ 			`scrap`
+ 		WHERE
+ 			`studyId` = #{studyId}
+ 			<if test="userId != null">
+ 			AND `userId` = #{userId}
+ 			</if>
+ 	</select>
+ 	
+ 	<insert id="insertScrap" parameterType="map">
+ 		INSERT INTO `scrap`
+ 		(
+ 			`studyId`
+			, `userId`
+			, `createdAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{studyId}
+ 			, #{userId}
+ 			, NOW()
+ 		)
+ 	</insert>
+ 	
+ 	<delete id="deleteScrap" parameterType="map">
+ 		DELETE
+ 		FROM
+ 			`scrap`
+ 		WHERE
+ 			`studyId` = #{studyId}
+ 			AND `userId` = #{userId}
+ 	</delete>
+ </mapper>

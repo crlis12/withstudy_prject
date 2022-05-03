@@ -37,10 +37,12 @@ public class UserController {
 		session.removeAttribute("userloginId");
 		session.removeAttribute("userName");
 		session.removeAttribute("userId");
+		session.removeAttribute("userEmail");
 		
 		return "redirect:/user/sign_in_view";
 	}
 	
+	//마이 페이지
 	@RequestMapping("/mypage_view")
 	public String mypageView(Model model) {
 		model.addAttribute("viewName", "user/mypage");
@@ -48,5 +50,7 @@ public class UserController {
 		return "template/template";
 		
 	}
+	
+	
 	
 }

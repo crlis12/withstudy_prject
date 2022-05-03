@@ -11,9 +11,13 @@
 	    		<span class="mr-2">스크랩</span>
 	    		<a href="#" class="scrap-btn" data-study-id="${study.id}">
 	    		<!-- 스크랩 버튼 비활성화 -->
-	    		<img alt="scrap1" src="/static/images/not_scrap.png" width="30px" height="30px">
+	    		<c:if test="${scrapCheck eq false }">
+	    			<img alt="scrap1" src="/static/images/not_scrap.png" width="30px" height="30px">
+	    		</c:if>
 	    		<!-- 스크랩 버튼 활성화 -->
-	    		<img alt="scrap2" src="/static/images/scrap.jpg" width="25px" height="25px">
+	    		<c:if test="${scrapCheck eq true }">
+	    			<img alt="scrap2" src="/static/images/scrap.jpg" width="25px" height="25px">
+	    		</c:if>
 	    		</a>
 	    	</div>
     	</div>
@@ -119,8 +123,10 @@
  			});
  		});
  		
+ 		// 스크랩
  		$(".scrap-btn").on("click", function(){
  			let studyId = $(this).data("study-id");
+ 			//alert(studyId);
  			
  			$.ajax({
  				url: "/scrap/" + studyId

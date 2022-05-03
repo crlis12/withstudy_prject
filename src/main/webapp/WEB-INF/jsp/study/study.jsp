@@ -30,7 +30,6 @@
 			<input id="search" type="text" name="search" class="form-control ml-3" placeholder="검색">
 		</div>
 	</div>
-	
 	<!-- 스터디 모임 -->
 	<table class="table text-center">
 		<thead>
@@ -46,18 +45,17 @@
 		<tbody>
 		<c:forEach items="${studyList }" var="study">
 		<!-- 2022-04-22 00:00:00  -->
-			
 			<tr>
 				<td class="d-flex justify-content-center align-items-center">${study.title}</td>
 				<td>${study.personnel}</td>
 				<td>${study.location}</td>
 				<td>
-					<fmt:parseDate value="${study.deadline }" var="parseDateValue" pattern="yyyy-MM-dd HH:mm:ss" />
+					<fmt:parseDate value="${study.deadline}" var="parseDateValue" pattern="yyyy-MM-dd HH:mm:ss" />
 					<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd" />
 				</td>
 				<!-- 자세히 보기 클릭시 해당 스터디 글 번호를 가져온다 -->
 				<td><a href="/study/study_detail_view?studyId=${study.id}" class="btn btn-success">자세히 보기</a></td>
-			</tr> 
+			</tr>
 		</c:forEach>
 		</tbody>
 	</table>
@@ -78,9 +76,9 @@ $(document).ready(function(){
 	        level: 3 // 지도의 확대 레벨
 	    }; 
 
-	// 지도를 생성합니다    
+	// 지도를 생성합니다
 	var map = new kakao.maps.Map(mapContainer, mapOption);
-	
+
 	// 주변 카페 나타내기
 	$("#cafe").on('click',function(){
 		// 장소 검색 객체를 생성합니다

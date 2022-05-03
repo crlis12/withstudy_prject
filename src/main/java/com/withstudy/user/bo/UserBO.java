@@ -38,6 +38,10 @@ public class UserBO {
 		return  userDAO.insertUser(loginId, password, name, email, location);
 	}
 	
-	
+	// 비밀번호 변경
+	public int upadateUser(String loginId, String password) {
+			
+		return userDAO.upadateUser(loginId, password);
+	}
 	
 }

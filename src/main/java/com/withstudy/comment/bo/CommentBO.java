@@ -38,7 +38,7 @@ public class CommentBO {
 	public List<CommentView> getCommentViewList(int studyId){
 		List<CommentView> resultList = new ArrayList<>();
 		List<Comment> commentList = getcommentListByStudyId(studyId); 
-		
+
 		for(Comment comment : commentList) {
 			CommentView commentView = new CommentView();
 			
