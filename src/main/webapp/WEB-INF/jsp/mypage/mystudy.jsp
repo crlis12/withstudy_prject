@@ -9,8 +9,13 @@
 	<div>
 		<a href="/study/study_detail_view?studyId=${myStudy.id }" >
 			<div class="mystudy_Box form-control">
-				<h3 class="font-weight-bold">${myStudy.title}</h3>
-				<h5></h5>
+				<div class="d-flex justify-content-between">
+					<h3 class="font-weight-bold">${myStudy.title}</h3>
+					<h5 class="font-weight-bold"> 마감일:
+						<fmt:parseDate value="${myStudy.deadline }" var="parseDateValue" pattern="yyyy-MM-dd HH:mm:ss" />
+						<fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd" />
+					</h5>
+				</div>
 			</div>
 		</a>
 	</div>

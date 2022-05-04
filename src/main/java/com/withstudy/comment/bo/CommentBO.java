@@ -27,6 +27,11 @@ public class CommentBO {
 		return commentdao.selectcommentListByStudyId(studyId);
 	}
 	
+	public List<Comment> getcommentListByUserId(Integer userId){
+		
+		return commentdao.selectcommentListByUserId(userId);
+	}
+	
 	//insert
 	//댓글
 	public int addComment(int userId, int studyId, String content) {

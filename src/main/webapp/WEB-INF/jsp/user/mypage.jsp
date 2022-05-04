@@ -21,7 +21,7 @@
 			내가 쓴 글	
 	</a>
 	
-	<a href="#" class="btn mypage_form mt-3 form-control">
+	<a href="/user/mypage/mycomment_view" class="btn mypage_form mt-3 form-control">
 			댓글 단글		
 	</a>
 		

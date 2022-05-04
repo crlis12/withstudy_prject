@@ -16,6 +16,20 @@
  		WHERE
  			`studyId` = #{studyId}
  	</select>
+ 	
+ 	<select id="selectcommentListByUserId" resultType="com.withstudy.comment.model.Comment">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `studyId`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`comment`
+ 		WHERE
+ 			`userId` = #{userId}
+ 	</select>
  	<insert id="insertComment" parameterType="map">
  		INSERT INTO `comment`
  		(

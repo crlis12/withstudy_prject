@@ -16,6 +16,8 @@ public interface CommentDAO {
 			@Param("studyId") int studyId,
 			@Param("content") String content);
 	
+	public List<Comment> selectcommentListByUserId(Integer userId);
+	
 	// 댓글 데이터
 	public List<Comment> selectcommentListByStudyId(int studyId);
 }

@@ -371,10 +371,5 @@
 		$("mycafelocation").on("click", function(){
 			map.relayout();
 		});
-		
-		
 	});
-	
-	
-	
 </script>
