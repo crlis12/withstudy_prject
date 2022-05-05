@@ -146,13 +146,58 @@ a:hover {
 	margin-top: 10px;
 	height: 150px;
 	background-color: #e4e4e4;
+	background-color: #e4e4e4;
 }
 
 .mystudy_Box:hover {
 	background-color: white;
 }
 
+.commentBox_header{
+	border-top: 2px solid #000;
+    border-bottom: 1px solid #000;
+    height: 70px;
+}
 
+.commentBox_content {
+    float: left;
+    width: 24.4%;
+    line-height: 53px;
+    font-size: 25px;
+    font-weight: bold;
+}
 
+.commentBox_content:nth-of-type(2) {
+    width: 51.2%;
+}
+
+.commentBox_comment_list {
+	overflow: hidden;
+	position: relative;
+}
+
+.commentBox_content_title {
+    float: left;
+    width: 24.4%;
+    font-weight: bold;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.commentBox_content_comment {
+	float: left;
+    position: relative;
+    width: 51.2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+.commentBox_comment_list:hover {
+	background-color:#e4e4e4;
+}
 
 
