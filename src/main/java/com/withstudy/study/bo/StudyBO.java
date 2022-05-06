@@ -21,6 +21,11 @@ public class StudyBO {
 		return studyDAO.selectStudyList();
 	}
 	
+	public Study getStudyByStudyId(Integer userId) {
+		
+		return studyDAO.selectStudyByStudyId(userId);
+	}
+	
 	public List<Study> getStudyByuserId(Integer userId) {
 		
 		return studyDAO.selectStudyByuserId(userId);

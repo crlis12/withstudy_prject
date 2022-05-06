@@ -3,6 +3,7 @@ package com.withstudy.scrap.model;
 import java.util.Date;
 
 public class Scrap {
+
 	private int studyId;
 	private int userId;
 	private Date createdAt;

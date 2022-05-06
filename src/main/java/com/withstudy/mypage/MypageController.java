@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.withstudy.comment.bo.CommentBO;
 import com.withstudy.comment.model.Comment;
+import com.withstudy.scrap.bo.ScrapBO;
+import com.withstudy.scrap.model.ScrapView;
 import com.withstudy.study.bo.StudyBO;
 import com.withstudy.study.model.Study;
 
@@ -23,6 +25,9 @@ public class MypageController {
 	
 	@Autowired
 	private CommentBO commentBO;
+	
+	@Autowired
+	private ScrapBO scrapBO;
 	
 	// 마이페이지-내정보
 	@RequestMapping("/myinfo_view")
@@ -56,6 +61,21 @@ public class MypageController {
 		
 		model.addAttribute("viewName", "mypage/mycomment");
 		model.addAttribute("myCommentList", myCommentList);
+		return "template/template";
+	}
+	
+	// 마이페이지 - 스크랩
+	@RequestMapping("/myscrap_view")
+	public String mypageUserScrap(
+			Model model,
+			HttpSession session) {
+		Integer userId = (Integer)session.getAttribute("userId");
+		
+		List<ScrapView> scrapViewList = scrapBO.getScrapView(userId);
+		
+		model.addAttribute("viewName", "mypage/myscrap");
+		model.addAttribute("scrapViewList", scrapViewList);
+		
 		return "template/template";
 	}
 }

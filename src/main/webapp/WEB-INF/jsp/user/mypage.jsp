@@ -25,7 +25,7 @@
 			댓글 단글		
 	</a>
 		
-	<a href="#" class="btn mypage_form mt-3 form-control">
+	<a href="/user/mypage/myscrap_view" class="btn mypage_form mt-3 form-control">
 			스크랩		
 	</a>
 </div>

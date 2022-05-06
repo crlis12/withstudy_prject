@@ -55,6 +55,24 @@
  		WHERE
  			`userId` = #{userId}
  	</select>
+ 	
+ 	<select id="selectStudyByStudyId" resultType="com.withstudy.study.model.Study">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `hostUserId`
+			, `title`
+			, `personnel`
+			, `deadline`
+			, `location`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`study`
+ 		WHERE
+ 			`userId` = #{userId}
+ 	</select>
  	<insert id="insertStudy" parameterType="map">
  		INSERT INTO `study`
  		(

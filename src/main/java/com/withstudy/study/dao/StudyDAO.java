@@ -14,6 +14,8 @@ public interface StudyDAO {
 	// 스터디 데이터 가져오기
 	public List<Study> selectStudyList();
 	
+	public Study selectStudyByStudyId(Integer userId);
+	
 	public Study selectStudyById(int studyId);
 	
 	public List<Study> selectStudyByuserId(Integer userId);
