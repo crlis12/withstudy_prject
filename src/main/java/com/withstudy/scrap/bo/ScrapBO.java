@@ -24,6 +24,8 @@ public class ScrapBO {
 	@Autowired
 	private StudyBO studyBO;
 	
+	
+	
 	// 스크랩 조회
 	public List<Scrap> getScrapList(Integer userId) {
 		
@@ -69,6 +71,8 @@ public class ScrapBO {
 			ScrapView scrapView = new ScrapView();
 			
 			scrapView.setScrap(scrap);
+			Study study = studyBO.getStudyById(scrap.getStudyId()); 
+			scrapView.setStudy(study);
 			
 			resultList.add(scrapView);
 		}

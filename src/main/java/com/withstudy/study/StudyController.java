@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.withstudy.comment.bo.CommentBO;
-import com.withstudy.comment.model.Comment;
 import com.withstudy.comment.model.CommentView;
+import com.withstudy.join.bo.JoinBO;
+import com.withstudy.join.model.Join;
 import com.withstudy.scrap.bo.ScrapBO;
 import com.withstudy.study.bo.StudyBO;
 import com.withstudy.study.model.Study;
@@ -29,6 +30,9 @@ public class StudyController {
 	
 	@Autowired
 	private ScrapBO scrapBO;
+	
+	@Autowired
+	private JoinBO joinBO;
 	
 	@RequestMapping("study_view")
 	public String studyView(Model model) {
@@ -61,12 +65,18 @@ public class StudyController {
 		List<CommentView> commentViewList = commentBO.getCommentViewList(studyId);
 		
 		boolean scrapCheck = scrapBO.existScrap(studyId, userId);
-		
+		boolean joinCheck = joinBO.existJoin(userId, studyId);
+		int joinCount = joinBO.getJoinByStudyId(studyId);
+		Join joinUser = joinBO.getJoinUser(userId, studyId);
 		
 		model.addAttribute("viewName", "study/study_detail");
 		model.addAttribute("study", study);
 		model.addAttribute("commentViewList", commentViewList);
 		model.addAttribute("scrapCheck", scrapCheck);
+		model.addAttribute("joinCheck", joinCheck);
+		model.addAttribute("joinCount", joinCount);
+		model.addAttribute("joinUser", joinUser);
+		
 		return "template/template";
 	}
 }

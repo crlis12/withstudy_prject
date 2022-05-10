@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.withstudy.join.dao.JoinDAO">
+ 	<select id="selectJoinUser" resultType="com.withstudy.join.model.Join" parameterType="map">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+			, `studyId`
+			, `check`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`join`
+ 		WHERE
+ 			<if test="userId != null">
+ 			`userId` = #{userId}
+ 			</if>
+ 			AND `studyId` = #{studyId}
+ 	</select>
+ 
+ 	<select id="selectJoinByUserIdOrStudyId" resultType="int" parameterType="map">
+ 		SELECT COUNT(*)
+ 		FROM
+ 			`join`
+ 		WHERE
+ 			<if test="userId != null">
+ 			`userId` = #{userId}
+ 			</if>
+ 			AND `studyId` = #{studyId}
+ 	</select>
+ 	
+ 	<select id="selectJoinByStudyId" resultType="int" parameterType="int">
+ 		SELECT COUNT(*)
+ 		FROM
+ 			`join`
+ 		WHERE
+ 			`studyId` = #{studyId}
+ 	</select>
+ 
+ 	<insert id="insertJoin" parameterType="map">
+ 		INSERT INTO `join`
+ 		(
+			`userId`
+			, `studyId`
+			, `check`
+			, `createdAt`
+			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{userId}
+ 			, #{studyId}
+ 			, "신청중"
+ 			, NOW()
+ 			, NOW()
+ 		)
+ 	</insert>
+ 	
+ 	<delete id="deleteJoin" parameterType="map">
+ 		DELETE
+ 		FROM
+ 			`join`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND `studyId` = #{studyId}
+ 	</delete>
+ </mapper>

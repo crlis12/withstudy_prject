@@ -60,8 +60,27 @@
     		</span>
     	</div>
     	<div class="d-flex justify-content-between mt-3">
-    		<span class="font-weight-bold">인원: 1/${study.personnel }</span>
-    		<button type="button" id="joinBtn"class="btn btn-info">신청하기</button>
+    		<div>
+	    		<span class="font-weight-bold">인원: ${joinCount}/${study.personnel }</span>
+	    		<c:if test="${joinCount eq study.personnel}">
+	    			<span class="font-weight-bold text-danger">모집 마감</span>
+	    		</c:if>
+    		</div>
+    		<a href="#" id="joinBtn" data-study-id="${study.id}" class="">
+    			<!--  신청인원보다 적을 때-->
+    			<c:if test="${joinCheck eq false && joinCount < study.personnel}">
+    				신청하기
+    			</c:if>
+    			<c:if test="${joinCheck eq true}">
+    				신청취소
+    			</c:if>	
+    		</a>
+    		<c:if test="${joinCount eq study.personnel && joinCheck eq true && joinUser.userId != userId}">
+    			<script>
+	    			$('#joinBtn').addClass('d-none');
+    			</script>
+	    		<span class="font-weight-bold">신청 마감</span>
+	    	</c:if>
     	</div>
     	<div class="mt-3">
     		${study.content}
@@ -139,6 +158,29 @@
  				}
  				,error: function(e) {
  					alert("스크랩에 실패하였습니다. 관리자에게 문의해주세요");
+ 				}
+ 			});
+ 		});
+ 		
+ 		//신청하기 버튼 클릭 시
+ 		$("#joinBtn").on("click", function(){
+ 			let studyId = $(this).data("study-id")
+ 			//alert(studyId);
+ 			
+ 			$.ajax({
+ 				type:"POST"
+ 				, url: "/join/apply"
+ 				, data:{"studyId":studyId}
+ 				, success: function(data) {
+ 					if(data.result == "success"){
+ 						location.reload();
+ 					} else {
+ 						alert(data.errorMessage)
+ 					}
+ 				}
+ 				, error: function(jqXHR, textStatus, errorThrown) {
+ 					let errorMsg = jqXHR.responseJSON.status;
+ 					alert(errorMsg + ":" + textStatus);
  				}
  			});
  		});
