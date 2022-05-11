@@ -75,6 +75,7 @@
     				신청취소
     			</c:if>	
     		</a>
+    		<!-- 인원이 마감 되었고 스터디 모임에 참석하는 본인 아이디가 아닐 경우 신청 버튼 or 신청 취소 버튼 안보이게 하기  -->
     		<c:if test="${joinCount eq study.personnel && joinCheck eq true && joinUser.userId != userId}">
     			<script>
 	    			$('#joinBtn').addClass('d-none');
