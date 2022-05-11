@@ -70,9 +70,10 @@
 		</footer>
 	</div>
 </body>
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+<!-- <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
-Kakao.init('e9de3d5fc52b64f13d9c024aad18e8ec'); //발급받은 키 중 javascript키를 사용해준다.
+Kakao.init('발급키'); //발급받은 키 중 javascript키를 사용해준다.
 console.log(Kakao.isInitialized()); // sdk초기화여부판단
 //카카오로그인
 function kakaoLogin() {
@@ -109,7 +110,7 @@ function kakaoLogout() {
       Kakao.Auth.setAccessToken(undefined)
     }
   }  
-</script>
+</script> -->
 
 <script>
 	$(document).ready(function(){
